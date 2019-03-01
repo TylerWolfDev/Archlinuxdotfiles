@@ -1,5 +1,9 @@
 # Archlinux Dotfiles!
-Aim to build a system that could meet my needs.
+
+![dark](https://github.com/wang-chung/Archlinuxdotfiles/blob/master/Pics/2019-03-01-215829_1920x1080_scrot.png)
+
+![light](https://github.com/wang-chung/Archlinuxdotfiles/blob/master/Pics/2019-03-01-220252_1920x1080_scrot.png)
+
 
 
 # TO-DO
