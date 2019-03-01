@@ -30,9 +30,9 @@ font xft: Google Sans Medium 13
 
 # Theme colors
 # class                           border            backgr.          text.indic.  child_border
-client.unfocused #151618           #151618          #c8c8c8      #151618
-client.focused #151618          #151618          #2581df     #151618
-client.focused_inactive #151618           #151618          #c8c8c8      #151618
+client.unfocused #ffffff           #ffffff          #656565      #ffffff
+client.focused #ffffff           #ffffff          #1a73e8      #ffffff
+client.focused_inactive #ffffff           #ffffff          #656565      #ffffff
 client.urgent                   #fff000           #fff705          #ffffff      #268BD2
 client.placeholder              #000000           #848484          #FFFFFF      #268BD2 
 client.background               #ffffff

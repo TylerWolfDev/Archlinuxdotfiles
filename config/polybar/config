@@ -1,6 +1,6 @@
 # refences : https://gist.github.com/rmrfasterisk/9be303bfe33989fe053b5aa01a7647db
 
-include-file = ~/.config/polybar/colordark
+include-file = ~/.config/polybar/colorlight
 include-file = ~/.config/polybar/modules
 
 [variables]
