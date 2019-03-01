@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=SimpleRecord BenchMark Mode
+Exec="/bin/bash ~/.Scripts/Exec/RecordMode.sh" %f
+MimeType=;
+Icon=chrome-ojcflmmmcfpacggndoaaflkmcoblhnbh-Default
+Terminal=false

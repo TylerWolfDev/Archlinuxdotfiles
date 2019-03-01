@@ -1,0 +1,58 @@
+# refences : https://gist.github.com/rmrfasterisk/9be303bfe33989fe053b5aa01a7647db
+
+include-file = ~/.config/polybar/colordark
+include-file = ~/.config/polybar/modules
+
+[variables]
+mpadding = 1
+
+
+[bar/i3bottombar]
+background = ${colors.color6}
+foreground = ${colors.color5}
+
+width = 100%
+height = 25
+offset-y = 10
+offset-x = 20
+
+border-top-size = 5
+border-bottom-size = 5
+border-right-size = 0
+border-left-size = 0
+
+bottom = true
+wm-restack = i3 
+#override-redirect = true
+
+font-0 = "Google Sans Medium:size=12;3"
+font-3 = "Material Icons:size=12;3"
+font-2 = "Noto Sans CJK SC Medium:size=12;3"
+font-1 = "Material Design Icons:style=Regular:size=12;3"
+
+fixed-center = true
+spacing = 0
+padding-left = 0
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 2
+modules-left = i3 headphone mpd mpdvol 
+modules-center = 
+modules-right = netspeed wlan xbacklight  pulseaudio battery temperature cpu memory date
+line-size = 2
+line-color=${colors.color6}
+
+enable-ipc = true
+border-size = 10
+border-color =${colors.color6}
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5

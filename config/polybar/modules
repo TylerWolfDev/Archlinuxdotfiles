@@ -1,0 +1,224 @@
+[module/i3]
+type = internal/i3
+format-background=${colors.color4}
+
+pin-workspaces = true
+
+ws-icon-0 = 1; 1
+ws-icon-1 = 2; 2
+ws-icon-2 = 3; 3
+ws-icon-3 = 4; 4
+ws-icon-4 = 5; 5
+ws-icon-5 = 6; 6
+ws-icon-6 = 7; 7
+ws-icon-7 = 8; 8
+ws-icon-8 = 9; 9
+ws-icon-default = 
+
+label-focused = %icon%
+label-focused-foreground = #ffffff
+label-focused-background = #1a73eb
+label-focused-underline = #2581df
+label-focused-padding = 2
+
+label-unfocused-background = ${colors.color4}
+label-unfocused = %icon%
+label-unfocused-padding = 2
+
+label-visible = %icon%/
+label-visible-underline = #555555
+label-visible-padding = 2
+
+label-urgent = %icon%
+label-urgent-foreground = #000000
+label-urgent-background = #df091d
+label-urgent-padding = 2
+
+
+[module/mpd]
+type = internal/mpd
+format-online =   <toggle> <icon-stop> <icon-prev> <icon-next><icon-repeatone> <icon-random>   <label-song> <label-time> 
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+icon-random = 
+icon-repeatone = 
+label-song-maxlen = 20
+label-song-ellipsis = true
+toggle-on-foreground = #ff
+toggle-off-foreground = #55
+
+
+[module/mpdvol]
+type = custom/script
+exec = mpc volume|cut -f2 -d":"
+exec-if = pgrep mpd
+click-left = mpc volume +5
+click-right = mpc volume -5
+interval = 1
+
+
+[module/headphone]
+format-background=${colors.color4}
+type = custom/script
+exec = echo 
+exec-if = /home/chung/.dotfiles/config/polybar/scripts/plugin
+interval = 1
+
+
+[module/date]
+format-background=${colors.color4}
+format-padding = ${variables.mpadding}
+type = internal/date
+interval = 1
+date-alt = %a %Y-%m-%d
+date = %a %d
+time-alt = %k:%M:%S
+time = %k:%M
+format-prefix = "  "
+
+label = %date% %time%
+
+
+
+
+
+[module/netspeed]
+
+type = internal/network
+interface = wlp2s0
+interval = 1.0
+format-connected = <label-connected>
+format-connected-padding = ${variables.mpadding}
+format-connected-background=${colors.color4}
+label-connected = %upspeed%  %downspeed%  
+
+
+
+
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 1.0
+format-connected = <ramp-signal> <label-connected>
+format-connected-padding = ${variables.mpadding}
+format-connected-background=${colors.color4}
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+
+label-connected = %essid%
+
+format-disconnected = 
+
+
+
+
+
+[module/xbacklight]
+format-padding = ${variables.mpadding}
+format-background=${colors.color4}
+type = internal/xbacklight
+format =  <ramp> <label>
+ramp-0 = " "
+ramp-1 = " "
+label = %percentage%%
+
+
+[module/pulseaudio]
+type = internal/pulseaudio
+interval = 5
+format-volume = <ramp-volume> <label-volume> 
+format-volume-padding = ${variables.mpadding}
+format-volume-background=${colors.color4}
+label-muted-foreground = #666
+
+label-muted =  Mute
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC0
+full-at = 95
+
+format-charging = <animation-charging> <label-charging>
+format-charging-padding = ${variables.mpadding}
+format-charging-background=${colors.color4}
+format-charging-underline = #1aef99
+
+format-discharging-padding = ${variables.mpadding}
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = #ffff00
+format-full-prefix = " "
+
+
+
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+
+
+
+
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-5 = 
+animation-charging-6 = 
+animation-charging-framerate = 500
+
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 50
+
+format = <label>
+format-padding = ${variables.mpadding}
+format-background=${colors.color4}
+format-prefix = " "
+format-warn-prefix = " "
+format-warn =<label-warn> 
+format-warn-padding = ${variables.mpadding}
+format-warn-background=${colors.color4}
+format-warn-underline = #ff0000
+
+label = %temperature-c%
+label-warn = %temperature-c%
+
+
+
+
+[module/cpu]
+format-padding = ${variables.mpadding}
+format-background=${colors.color4}
+type = internal/cpu
+interval = 2
+format-prefix = "  "
+label = %percentage%%
+
+
+
+[module/memory]
+format-padding = ${variables.mpadding}
+format-background=${colors.color4}
+type = internal/memory
+interval = 2
+label = %percentage_used%%
+format-prefix = " "

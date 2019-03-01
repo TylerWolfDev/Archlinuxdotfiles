@@ -1,0 +1,47 @@
+#!/bin/bash
+file=$1
+
+function static() {
+	shopt -s nullglob
+	while true; do
+		cd $file
+		ls
+		files=()
+		for i in *.jpg *.png; do
+			[[ -f $i ]] && files+=("$i")
+		done
+		echo "break"
+		range=${#files[@]}
+		((range)) && feh --bg-scale "${files[RANDOM % range]}"
+		sleep 1800s
+	done
+}
+
+function dynamic() {
+	xwinwrap -ov -ni -fs -- mpv -vo x11 -wid WID --keepaspect=no --loop $file
+}
+
+function show_help() {
+	cat <<-EOF 
+	DSACW : Dotfiles Scripts auto change wallpapers!                               
+	Usage :
+		DSACW [file or dir] 		
+		if "\$1" is dir then change static wallpapers, if "\$1" is file then use this wallpaper(which mpv supported)		
+	EOF
+}
+
+
+if [ x"$1" = x ]; then 
+	show_help
+    exit 1
+fi
+
+if [ -f $1 ];then
+	echo "$1 is file"
+	dynamic
+elif [ -d $1 ];then
+	echo "$1 is dir"
+	static
+else
+	notify-send "Wallpapers switch wrong"
+fi

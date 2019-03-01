@@ -1,0 +1,255 @@
+#!/bin/bash
+
+APPS=("GTK" "Kvantum" "i3" "code" "dunst" "rofi" "fcitx")
+# polybar 包含在 i3 配置中，否则会不能读出 i3 桌面。
+H1=7
+H2=17
+
+# dark
+color1=#2581df
+color2=#1c1d1f
+color3=#151618
+color4=#464648
+color5=#c8c8c8
+color6=#000000
+color7=#ffffff
+#light
+color8=#1a73e8
+color9=#f8f8f8
+color10=#ffffff
+color11=#dcdcdc
+color12=#656565
+color13=#FDFDFD
+color14=#000000
+
+function AppsSwitch(){
+    echo -e "New Mode: $NEW_MODE"
+    for app in ${APPS[@]}; do
+        echo -e "\033[44;37m >>>>>>>>>>>>>> $app theme changing >>>>>>>>>>>>>>> \033[0m"
+        CMD=$app"Switch"
+        eval $CMD
+    done
+}
+
+function GTKSwitch(){
+    
+    icon_dark=Papirus-Dark
+    icon_light=Papirus-Light
+    theme_dark=Arc-Dark-pixel-blue #Materia-dark
+    theme_light=Arc-pixel-blue #Materia-light
+    if [ "${NEW_MODE}" == "dark" ]; then 
+        # light - > dark
+       theme_new=$theme_dark
+       icon_new=$icon_dark
+    elif [ "${NEW_MODE}" == "light" ]; then 
+        # dark -> light
+       theme_new=$theme_light
+       icon_new=$icon_light
+    else 
+        echo "switch $app wrong!"
+    fi
+    echo "gtk3"
+    if ! grep "gtk-icon-theme-name=$icon_new$" ~/.config/gtk-3.0/settings.ini ;then
+        sed -i "s/gtk-icon-theme-name.*/gtk-icon-theme-name=$icon_new/g;  "  ~/.config/gtk-3.0/settings.ini
+    fi
+    if ! grep "gtk-theme-name=$theme_new$" ~/.config/gtk-3.0/settings.ini ;then
+        sed -i "s/gtk-theme-name.*/gtk-theme-name=$theme_new/g;  "  ~/.config/gtk-3.0/settings.ini
+    fi 
+    echo "gtk2"
+    if ! grep "gtk-icon-theme-name=\"$icon_new\"$" ~/.gtkrc-2.0 ;then
+        sed -i "s/gtk-icon-theme-name.*/gtk-icon-theme-name=\"$icon_new\"/g;  "  ~/.gtkrc-2.0
+    fi
+    if ! grep "gtk-theme-name=\"$theme_new\"$" ~/.gtkrc-2.0 ;then
+        sed -i "s/gtk-theme-name.*/gtk-theme-name=\"$theme_new\"/g;  "  ~/.gtkrc-2.0
+    fi
+}
+
+function dunstSwitch() {
+    
+    back_dark=$color6
+    fore_dark=$color7
+    back_light=$color13
+    fore_light=$color14
+    if [ "${NEW_MODE}" == "dark" ]; then 
+        back_new=$back_dark
+        fore_new=$fore_dark
+    elif [ "${NEW_MODE}" == "light" ]; then 
+        back_new=$back_light
+        fore_new=$fore_light
+    else 
+        echo "switch dunst wrong!"
+    fi
+
+    swi=0
+    if ! grep "    background = \"$back_new\"" ~/.config/dunst/dunstrc;then
+        sed -i "s/background.*/    background = \"$back_new\"/g;  " ~/.config/dunst/dunstrc
+        swi=1
+    fi
+    if ! grep "    foreground = \"$fore_new\"" ~/.config/dunst/dunstrc;then
+        sed -i "s/foreground.*/    foreground = \"$fore_new\"/g;  " ~/.config/dunst/dunstrc
+        swi=1
+    fi
+    if [ $swi -eq 1 ];then
+        pkill dunst
+        dunst -config ~/.config/dunst/dunstrc &
+    fi
+}
+
+function codeSwitch(){
+    
+    theme_dark="Atom One Dark"
+    theme_light="Atom One Light"
+    if [ "${NEW_MODE}" == "dark" ]; then 
+        themeNew=$theme_dark;
+    elif [ "${NEW_MODE}" == "light" ]; then 
+        themeNew=$theme_light;
+    else
+        echo "switch $app wrong!"
+    fi
+    #if ! grep "\"workbench.colorTheme\": \"$themeNew\"" ~/.config/Code\ -\ OSS/User/settings.json ;then
+        #sed -i " s/.*workbench.colorTheme.*/    \"workbench.colorTheme\": \"$themeNew\"\,/g;  " ~/.config/Code\ -\ OSS/User/settings.json        
+    #fi
+}
+
+fcitxSwitch() {
+    SkinLight=material
+    SkinDark=material-dark
+    if [ "${NEW_MODE}" == "dark" ]; then 
+        skinNew=$SkinDark;
+    elif [ "${NEW_MODE}" == "light" ]; then 
+        skinNew=$SkinLight;
+    else
+        echo "switch $app wrong!"
+    fi
+    flag=0
+    if ! grep "SkinType=\'\"$skinNew\"\'" ~/.config/fcitx/conf/fcitx-classic-ui.config ;then
+        sed -i "s/.*SkinType=.*/SkinType=$skinNew/g" ~/.config/fcitx/conf/fcitx-classic-ui.config
+        flag=1
+    fi
+    if [ $flag -eq 1 ];then
+        kill -9 `ps -ef|grep fcitx|grep -v grep |awk '{print $2}'`
+        sleep 1
+        echo 'start ....'
+        fcitx -r 2>&1 > /dev/null &
+    fi
+}
+
+function KvantumSwitch() {
+    
+    theme_light=MateriaLight;
+    theme_dark=MateriaDark;
+    if [ "${NEW_MODE}" == "dark" ]; then 
+        themeNew=$theme_dark;
+        themeOld=$theme_light;
+    elif [ "${NEW_MODE}" == "light" ]; then 
+        themeNew=$theme_light;
+        themeOld=$theme_dark;
+    else
+        echo "switch $app wrong!"
+    fi
+    if ! grep "theme=$themeNew" ~/.config/Kvantum/kvantum.kvconfig;then
+        sed -i "/theme/ { s/$themeOld/$themeNew/g;  }" ~/.config/Kvantum/kvantum.kvconfig
+    fi
+}
+
+function i3Switch() {
+    
+    # class   border            backgr.          text.indic.        child_border
+    focused_light="$color10           $color10          $color8      $color10"
+    unfocused_light="$color10           $color10          $color12      $color10"
+    focused_inactive_light="$color10           $color10          $color12      $color10"
+    focused_dark="$color3          $color3          $color1     $color3"
+    unfocused_dark="$color3           $color3          $color5      $color3"
+    focused_inactive_dark="$color3           $color3          $color5      $color3"
+    if [ "${NEW_MODE}" == "dark" ]; then 
+        focusedNew="$focused_dark"
+        unfocusedNew="$unfocused_dark"
+        focused_inactiveNew="$focused_inactive_dark"
+    elif [ "${NEW_MODE}" == "light" ]; then 
+        focusedNew="$focused_light"
+        unfocusedNew="$unfocused_light"
+        focused_inactiveNew="$focused_inactive_light"
+    else
+        echo "switch $app wrong!"
+    fi
+        echo "break "
+    Switch=0
+    if ! grep "client\.focused $focusedNew" ~/.dotfiles/config/i3/config;then
+        sed -i " s/client\.focused[^_].*/client\.focused $focusedNew/g;  " ~/.dotfiles/config/i3/config
+        Switch=1
+    fi
+
+    if ! grep "client\.unfocused $unfocusedNew"  ~/.dotfiles/config/i3/config;then
+        sed -i " s/client\.unfocused.*/client\.unfocused $unfocusedNew/g;  " ~/.dotfiles/config/i3/config
+        Switch=1
+    fi
+    if ! grep "client\.focused_inactive $focused_inactiveNew" ~/.dotfiles/config/i3/config;then
+        sed -i " s/client\.focused_inactive.*/client\.focused_inactive $focused_inactiveNew/g;  " ~/.dotfiles/config/i3/config
+        Switch=1
+    fi
+    echo "  >>>> polybar.i3bar$NEW_MODE"
+    Pol=0
+    if ! grep "color$NEW_MODE" ~/.config/polybar/config;then
+        echo "polybar i3 bar $NEW_MODE" 
+        sed -i " s/polybar\/color.*/polybar\/color$NEW_MODE/g;  " ~/.dotfiles/config/polybar/config
+        Pol=1
+    fi
+    if [ $Pol -eq 1 ];then
+        ~/.config/polybar/launchi3.sh  > /dev/null &
+    fi
+    if [ $Switch -eq 1 ];then
+        i3-msg reload
+    fi
+    echo "i3 theme changed"
+}
+
+function rofiSwitch() {
+    if [ "${NEW_MODE}" == "dark" ]; then 
+        xbsNEW=$color1
+        xfsNEW=$color2
+        xbgNEW=$color3
+        xfgNEW=$color5
+    elif [ "${NEW_MODE}" == "light" ]; then 
+        xbsNEW=$color8
+        xfsNEW=$color9
+        xbgNEW=$color10
+        xfgNEW=$color12
+    fi
+    if ! grep "xbg: $xbgNEW;" ~/.config/rofi/themes/colors.rasi;then
+        sed -i " s/xbg:.*/xbg: $xbgNEW;/g;  " ~/.config/rofi/themes/colors.rasi
+    fi
+    if ! grep "xfg: $xfgNEW;" ~/.config/rofi/themes/colors.rasi;then
+        sed -i " s/xfg:.*/xfg: $xfgNEW;/g;  " ~/.config/rofi/themes/colors.rasi
+    fi
+    if ! grep "xfs: $xfsNEW;" ~/.config/rofi/themes/colors.rasi;then
+        sed -i " s/xfs:.*/xfs: $xfsNEW;/g;  " ~/.config/rofi/themes/colors.rasi
+    fi
+    if ! grep "xbs: $xbsNEW;" ~/.config/rofi/themes/colors.rasi;then
+        sed -i " s/xbs:.*/xbs: $xbsNEW;/g;  " ~/.config/rofi/themes/colors.rasi
+    fi
+}
+
+pkill dunst
+
+
+if [ "$1" == "l" ];then
+    NEW_MODE="light"
+    AppsSwitch
+    pkill DScld
+elif [ "$1" == "d" ];then  
+    NEW_MODE="dark"
+    AppsSwitch
+    pkill DScld
+else
+    while true; do 
+        NOW_HOUR="$((10#$(date "+%H")))"
+        echo "Now it's ${NOW_HOUR}"
+        if [[ "${NOW_HOUR}" -ge "$H1" && "${NOW_HOUR}" -le "$H2" ]]; then
+            NEW_MODE=light
+        else
+            NEW_MODE=dark          
+        fi
+        AppsSwitch
+        sleep 600s
+    done
+fi

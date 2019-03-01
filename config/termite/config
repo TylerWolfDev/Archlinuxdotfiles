@@ -1,0 +1,20 @@
+[options]
+
+#font = Fira Code Retina 12
+font  = Monaco 12
+mouse_autohide = true
+clickable_url = true
+browser = firefox
+allow_bold = true
+dynamic_title = true
+scrollback_lines = 10000
+cursor_blink = system
+
+[colors]
+foreground      = #fdfdfd
+foreground_bold = #f8f8f2
+cursor          = #f8f8f2
+background = #282c34
+
+
+

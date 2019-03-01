@@ -1,0 +1,10 @@
+export GTK_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export QT_IM_MODULE=fcitx
+
+##ibus-daemon -x -d
+
+##QT_QPA_PLATFORMTHEME=gtk2
+##QT_STYLE_OVERRIDE=GTK+
+
+export QT_QPA_PLATFORMTHEME="qt5ct"
