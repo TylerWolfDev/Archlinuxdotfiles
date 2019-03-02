@@ -30,8 +30,8 @@ font xft: Google Sans Medium 13
 
 # Theme colors
 # class                           border            backgr.          text.indic.  child_border
-client.unfocused #ffffff           #ffffff          #656565      #ffffff
-client.focused #ffffff           #ffffff          #1a73e8      #ffffff
+client.unfocused #f8f8f8           #f8f8f8          #656565      #f8f8f8
+client.focused #dcdcdc           #dcdcdc          #1a73e8      #dcdcdc
 client.focused_inactive #ffffff           #ffffff          #656565      #ffffff
 client.urgent                   #fff000           #fff705          #ffffff      #268BD2
 client.placeholder              #000000           #848484          #FFFFFF      #268BD2 
@@ -149,15 +149,15 @@ for_window [class="engrampa"] floating enable resize set 960 800,  move position
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window pixel 0
-new_float pixel 5
+new_float pixel 0
 
 # Hide borders
-hide_edge_borders none
+hide_edge_borders both
 
 # change borders
 bindsym $mod+u border none
 bindsym $mod+o border pixel 5
-#bindsym $mod+n border normal
+bindsym $mod+n border normal
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
