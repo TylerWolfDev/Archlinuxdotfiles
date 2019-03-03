@@ -53,10 +53,9 @@ window {
     height:50%;
 }
 mainbox {
-
     border: 0;
     border-color: @x0;
-    padding: 6;
+    padding: 30;
 }
 message {
 

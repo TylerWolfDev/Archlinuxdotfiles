@@ -39,8 +39,8 @@ function GTKSwitch(){
     
     icon_dark=Papirus-Dark
     icon_light=Papirus-Light
-    theme_dark=Arc-Dark-pixel-blue #Materia-dark
-    theme_light=Arc-pixel-blue #Materia-light
+    theme_dark=PixelBlueDark #Materia-dark
+    theme_light=PixelBlueLight #Materia-light
     if [ "${NEW_MODE}" == "dark" ]; then 
         # light - > dark
        theme_new=$theme_dark

@@ -1,8 +1,3 @@
-/**
- * ROFI Color theme
- * User: Qball
- * Copyright: Dave Davenport
- */
 @import "colors"
 * {
     background-color: @xbg;
@@ -10,6 +5,8 @@
     text-color:       @xfg;
     font:            "Google Sans 60";
 }
+
+
 
 #window {
     location:   center;

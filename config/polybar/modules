@@ -59,6 +59,12 @@ click-left = mpc volume +5
 click-right = mpc volume -5
 interval = 1
 
+[module/mmargin]
+type = custom/script
+exec = echo "  "
+exec-if = pgrep polybar
+interval = 10
+
 
 [module/headphone]
 format-background=${colors.color4}
@@ -82,11 +88,7 @@ format-prefix = "  "
 label = %date% %time%
 
 
-
-
-
 [module/netspeed]
-
 type = internal/network
 interface = wlp2s0
 interval = 1.0
@@ -94,9 +96,6 @@ format-connected = <label-connected>
 format-connected-padding = ${variables.mpadding}
 format-connected-background=${colors.color4}
 label-connected = %upspeed%  %downspeed%  
-
-
-
 
 
 [module/wlan]
@@ -114,9 +113,6 @@ ramp-signal-3 = 
 label-connected = %essid%
 
 format-disconnected = 
-
-
-
 
 
 [module/xbacklight]
@@ -152,15 +148,12 @@ full-at = 95
 format-charging = <animation-charging> <label-charging>
 format-charging-padding = ${variables.mpadding}
 format-charging-background=${colors.color4}
-format-charging-underline = #1aef99
+format-charging-underline = #1a73e8
 
 format-discharging-padding = ${variables.mpadding}
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = #ffff00
 format-full-prefix = " "
-
-
-
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -169,10 +162,6 @@ ramp-capacity-3 = 
 ramp-capacity-4 = 
 ramp-capacity-5 = 
 ramp-capacity-6 = 
-
-
-
-
 
 animation-charging-0 = 
 animation-charging-1 = 

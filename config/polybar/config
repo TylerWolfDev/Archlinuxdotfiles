@@ -5,7 +5,7 @@ include-file = ~/.config/polybar/modules
 
 [variables]
 mpadding = 1
-
+margin = 2
 
 [bar/i3bottombar]
 background = ${colors.color6}
@@ -16,8 +16,10 @@ height = 25
 offset-y = 10
 offset-x = 20
 
+dim-value = 1.0
+
 border-top-size = 5
-border-bottom-size = 5
+border-bottom-size = 3
 border-right-size = 0
 border-left-size = 0
 
@@ -35,11 +37,11 @@ spacing = 0
 padding-left = 0
 padding-right = 0
 module-margin-left = 0
-module-margin-right = 2
+module-margin-right = 0
 modules-left = i3 headphone mpd mpdvol 
 modules-center = 
-modules-right = netspeed wlan xbacklight  pulseaudio battery temperature cpu memory date
-line-size = 2
+modules-right =netspeed wlan mmargin xbacklight  pulseaudio mmargin battery temperature cpu memory mmargin date
+line-size = 3
 line-color=${colors.color6}
 
 enable-ipc = true

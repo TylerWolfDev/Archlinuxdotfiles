@@ -18,6 +18,17 @@ window {
     width:50%;
     height:50%;
 }
+
+mainbox{
+    background-color:       @xbg;
+    children: [inputbar, listview];
+	spacing: 10px;
+	/*margin: 20%;*/
+	padding: 30px 0;
+	border: 1px;
+	border-color: @base0D;
+}
+
 listview {
     fixed-height: 0;
     border: 0px;
