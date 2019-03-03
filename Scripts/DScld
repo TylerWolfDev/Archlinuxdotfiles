@@ -17,10 +17,14 @@ color7=#ffffff
 color8=#1a73e8
 color9=#f8f8f8
 color10=#ffffff
-color11=#dcdcdc
-color12=#656565
+color11=#a8a8a8
+color12=#dcdcdc
 color13=#FDFDFD
 color14=#000000
+
+# add
+color15=#354c6f
+color16=#8db6f8
 
 function AppsSwitch(){
     echo -e "New Mode: $NEW_MODE"
@@ -155,13 +159,13 @@ function KvantumSwitch() {
 
 function i3Switch() {
     
-    # class   border            backgr.          text.indic.        child_border
-    focused_light="$color8           $color8          $color9      $color8"
-    unfocused_light="$color10           $color10          $color12      $color10"
-    focused_inactive_light="$color11           $color11          $color12      $color11"
-    focused_dark="$color1          $color1          $color2     $color1"
-    unfocused_dark="$color3           $color3          $color5      $color3"
-    focused_inactive_dark="$color4           $color4          $color5      $color4"
+    # class                 border            backgr.          text.      indic.        child_border
+    focused_light="         $color8             $color8         $color9         $color9     $color9"
+    unfocused_light="       $color12            $color12        $color14        $color11    $color11"
+    focused_inactive_light="$color16            $color16        $color9         $color11    $color11"
+    focused_dark="          $color1             $color1         $color2         $color3     $color3"
+    unfocused_dark="        $color4             $color4         $color5         $color4     $color4"
+    focused_inactive_dark=" $color15            $color15        $color2         $color4     $color4"
     if [ "${NEW_MODE}" == "dark" ]; then 
         focusedNew="$focused_dark"
         unfocusedNew="$unfocused_dark"
