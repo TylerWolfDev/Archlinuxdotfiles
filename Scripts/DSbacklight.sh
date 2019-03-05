@@ -20,10 +20,10 @@ function send_notification {
     backlight=`get_backlight`
     # Make the bar with the special character ─ (it's not dash -)
     # https://en.wikipedia.org/wiki/Box-drawing_character
-    bar=$(seq -s "╸" $(($backlight / 5)) | sed 's/[0-9]//g')
+    bar=$(seq -s "•" $(($backlight / 5)) | sed 's/[0-9]//g')
     # Send the notification
 
-    dunstify -i $ICON  -t 900 -r 2593 -u normal "  $bar"
+    dunstify -i $ICON  -t 900 -r 2593 -u normal "          $bar"
 }
 
 case $command in

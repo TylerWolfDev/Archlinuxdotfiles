@@ -3,7 +3,7 @@
     background-color: @xbg;
     border-color:     @xfg;
     text-color:       @xfg;
-    font:            "Google Sans 12";
+    font:            "Google Sans 20";
 }
 
 
@@ -14,23 +14,30 @@
     height:     48%;
     padding:    0px;
     border-radius: 2px;
-
-    children:   [ horibox ];
 }
 
-#horibox {
-    orientation: horizontal;
-    children:   [ listview ];
+mainbox{
+    children: [inputbar, listview];
+	spacing: 10px;
+	/*margin: 20%;*/
+	padding: 30px 15;
 }
 
 #listview {
-    spacing:    0px;
+    spacing:    5px;
     lines:      1;
 }
 
-#entry {
+inputbar {
+    text-color: @xfg;
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+
+textbox-prompt-colon {
     expand:     false;
-    width:      10em;
+    str:        " ";
+    margin:     0px 0.3000em 0.0000em 0.0000em ;
+    text-color: inherit;
 }
 
 #element {

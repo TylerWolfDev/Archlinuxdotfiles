@@ -19,12 +19,19 @@ visualizer_in_stereo = "no"
 visualizer_sync_interval = 10
 visualizer_type = "spectrum"
 visualizer_look = "▋▋"
-visualizer_color = blue, cyan, green, yellow, magenta, red
+visualizer_color = blue, cyan, green, yellow, magenta, red,grey
 
 ## Alternative subset of 256 colors for terminals that support it.
 ##
 #visualizer_color = 41, 83, 119, 155, 185, 215, 209, 203, 197, 161
 
+#color1=#2581df
+#color2=#1c1d1f
+#color3=#151618
+#color4=#2f333c
+#color5=#c8c8c8
+#color6=#20000000
+#color7=#ffffff
 
 
 ### Appearance ###
@@ -39,16 +46,16 @@ titles_visibility = "no"
 
 # Progress bar #
 #progressbar_look = "⠒⠒⠐"
-#progressbar_look = "•••"
+progressbar_look = "•••"
 #progressbar_look = "---"
-progressbar_look = "▀▀ "
+#progressbar_look = "▀▀ "
 #progressbar_look = "╼·"
 #progressbar_look = "━━━"
 #progressbar_look = "━━─"
 #progressbar_look = "◾◾◽"
 #progressbar_look = "─╼─"
-progressbar_color = "black"
-progressbar_elapsed_color = "white"
+progressbar_color = "grey"
+progressbar_elapsed_color = "grey"
 progressbar_boldness = "yes"
 
 # Song status #

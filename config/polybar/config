@@ -5,7 +5,7 @@ include-file = ~/.config/polybar/modules
 
 [variables]
 mpadding = 1
-margin = 2
+margin = 1 
 
 [bar/i3bottombar]
 background = ${colors.color6}
@@ -28,9 +28,10 @@ wm-restack = i3
 #override-redirect = true
 
 font-0 = "Google Sans Medium:size=12;3"
-font-3 = "Material Icons:size=12;3"
-font-2 = "Noto Sans CJK SC Medium:size=12;3"
-font-1 = "Material Design Icons:style=Regular:size=12;3"
+font-3 = "Noto Sans CJK SC Medium:size=12;3"
+font-2 = "Material Design Icons:style=Regular:size=12;3"
+font-1 = "Material Icons:size=12;3"
+font-4 =  Iosevka:style=Medium:size=15;3
 
 fixed-center = true
 spacing = 0
@@ -38,11 +39,17 @@ padding-left = 0
 padding-right = 0
 module-margin-left = 0
 module-margin-right = 0
-modules-left = i3 headphone mpd mpdvol 
+modules-left = i3 right  mmargin headphone mmargin mpd mmargin mpdvol 
 modules-center = 
-modules-right =netspeed wlan mmargin xbacklight  pulseaudio mmargin battery temperature cpu memory mmargin date
+modules-right =left netspeed wlan right mmargin left  xbacklight  pulseaudio right  mmargin left  battery temperature cpu memory right mmargin left date
 line-size = 3
 line-color=${colors.color6}
+
+#tray-detached = true
+#tray-position = right
+
+#tray-paddding = 2
+#tray-background = ${colors.color3}
 
 enable-ipc = true
 border-size = 10

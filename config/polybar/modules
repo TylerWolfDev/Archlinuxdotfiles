@@ -4,16 +4,15 @@ format-background=${colors.color4}
 
 pin-workspaces = true
 
-ws-icon-0 = 1; 1
-ws-icon-1 = 2; 2
-ws-icon-2 = 3; 3
-ws-icon-3 = 4; 4
-ws-icon-4 = 5; 5
-ws-icon-5 = 6; 6
-ws-icon-6 = 7; 7
-ws-icon-7 = 8; 8
-ws-icon-8 = 9; 9
-ws-icon-default = 
+ws-icon-0 = 1;1
+ws-icon-1 = 2;2
+ws-icon-2 = 3;3
+ws-icon-3 = 4;4
+ws-icon-4 = 5;5
+ws-icon-5 = 6;6
+ws-icon-6 = 7;7
+ws-icon-7 = 8;8
+ws-icon-default = 7
 
 label-focused = %icon%
 label-focused-foreground = #ffffff
@@ -25,7 +24,9 @@ label-unfocused-background = ${colors.color4}
 label-unfocused = %icon%
 label-unfocused-padding = 2
 
-label-visible = %icon%/
+label-visible = %icon%
+label-visible-background = #dae289
+label-visible-foreground = #dae289
 label-visible-underline = #555555
 label-visible-padding = 2
 
@@ -37,7 +38,8 @@ label-urgent-padding = 2
 
 [module/mpd]
 type = internal/mpd
-format-online =   <toggle> <icon-stop> <icon-prev> <icon-next><icon-repeatone> <icon-random>   <label-song> <label-time> 
+format-online =   <toggle> <icon-stop> <icon-prev> <icon-next><icon-repeatone> <icon-random> <label-time> 
+format-online-background = ${colors.color6}
 icon-prev = 
 icon-stop = 
 icon-play = 
@@ -51,20 +53,32 @@ toggle-on-foreground = #ff
 toggle-off-foreground = #55
 
 
+
 [module/mpdvol]
 type = custom/script
 exec = mpc volume|cut -f2 -d":"
 exec-if = pgrep mpd
 click-left = mpc volume +5
 click-right = mpc volume -5
-interval = 1
+interval = 10
+format-background = ${colors.color4}
+format-padding= ${variables.mpadding}
 
 [module/mmargin]
-type = custom/script
-exec = echo "  "
-exec-if = pgrep polybar
-interval = 10
+type = custom/text
+content-foreground = ${colors.color4}
+content = "%{T1}  %{T-}"
 
+
+[module/right]
+type = custom/text
+content-foreground = ${colors.color4}
+content = "%{T5}%{T-}"
+
+[module/left]
+type = custom/text
+content-foreground = ${colors.color4}
+content = "%{T5}%{T-}"
 
 [module/headphone]
 format-background=${colors.color4}
@@ -94,7 +108,7 @@ interface = wlp2s0
 interval = 1.0
 format-connected = <label-connected>
 format-connected-padding = ${variables.mpadding}
-format-connected-background=${colors.color4}
+format-connected-background=${colors.color3}
 label-connected = %upspeed%  %downspeed%  
 
 
@@ -104,7 +118,7 @@ interface = wlp2s0
 interval = 1.0
 format-connected = <ramp-signal> <label-connected>
 format-connected-padding = ${variables.mpadding}
-format-connected-background=${colors.color4}
+format-connected-background=${colors.color3}
 ramp-signal-0 = 
 ramp-signal-1 = 
 ramp-signal-2 = 
@@ -117,7 +131,7 @@ format-disconnected = 
 
 [module/xbacklight]
 format-padding = ${variables.mpadding}
-format-background=${colors.color4}
+format-background=${colors.color3}
 type = internal/xbacklight
 format =  <ramp> <label>
 ramp-0 = " "
@@ -130,10 +144,12 @@ type = internal/pulseaudio
 interval = 5
 format-volume = <ramp-volume> <label-volume> 
 format-volume-padding = ${variables.mpadding}
-format-volume-background=${colors.color4}
+format-volume-background=${colors.color3}
 label-muted-foreground = #666
+label-muted-background = ${colors.color3}
+label-muted-padding = ${variables.mpadding}
 
-label-muted =  Mute
+label-muted = Mute
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
@@ -147,7 +163,7 @@ full-at = 95
 
 format-charging = <animation-charging> <label-charging>
 format-charging-padding = ${variables.mpadding}
-format-charging-background=${colors.color4}
+format-charging-background=${colors.color3}
 format-charging-underline = #1a73e8
 
 format-discharging-padding = ${variables.mpadding}
@@ -180,12 +196,12 @@ warn-temperature = 50
 
 format = <label>
 format-padding = ${variables.mpadding}
-format-background=${colors.color4}
+format-background=${colors.color3}
 format-prefix = " "
 format-warn-prefix = " "
 format-warn =<label-warn> 
 format-warn-padding = ${variables.mpadding}
-format-warn-background=${colors.color4}
+format-warn-background=${colors.color3}
 format-warn-underline = #ff0000
 
 label = %temperature-c%
@@ -196,7 +212,7 @@ label-warn = %temperature-c%
 
 [module/cpu]
 format-padding = ${variables.mpadding}
-format-background=${colors.color4}
+format-background=${colors.color3}
 type = internal/cpu
 interval = 2
 format-prefix = "  "
@@ -206,7 +222,7 @@ label = %percentage%%
 
 [module/memory]
 format-padding = ${variables.mpadding}
-format-background=${colors.color4}
+format-background=${colors.color3}
 type = internal/memory
 interval = 2
 label = %percentage_used%%

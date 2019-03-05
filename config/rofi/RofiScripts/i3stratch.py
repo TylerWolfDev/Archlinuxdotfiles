@@ -4,7 +4,7 @@ import i3ipc
 import rofi 
 
 i3 = i3ipc.Connection()
-menu = rofi.Rofi(rofi_args=['-config','~/.config/rofi/themes/default.rasi'])
+menu = rofi.Rofi(rofi_args=['-config','~/.config/rofi/themes/Switch.rasi'])
 
 def scratchpad():
     for con in i3.get_tree():

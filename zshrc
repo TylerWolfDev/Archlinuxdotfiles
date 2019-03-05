@@ -105,3 +105,5 @@ alias pc='proxychains'
 
 export PATH=~/.Scripts:$PATH
 
+
+eval $(thefuck --alias)

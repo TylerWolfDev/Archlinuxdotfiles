@@ -26,7 +26,7 @@ set $mod Mod4
 ##########################
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft: Google Sans Bold 13
+font xft: Google Sans Bold 12
 
 # Theme colors
 # class                   border            backgr.          text.          indic.          child_border
@@ -76,7 +76,7 @@ bindsym $mod+Shift+f exec --no-startup-id ~/.Scripts/DSfani.sh
 
 # Rofi
 bindsym $mod+s exec --no-startup-id rofi -show drun -show-icons -config $HOME/.config/rofi/themes/launchpad.rasi
-bindsym $mod+Tab exec --no-startup-id rofi  -show window -show-icons 
+bindsym $mod+Tab exec --no-startup-id rofi  -show window -show-icons -config ~/.config/rofi/themes/Switch.rasi
 bindsym $mod+9 exec --no-startup-id $HOME/.config/rofi/RofiScripts/i3stratch.py
 bindsym $mod+y exec --no-startup-id $HOME/.config/rofi/RofiScripts/Powermenu.sh
 # rofi-calc - useful calc tool
@@ -111,7 +111,7 @@ for_window [class="Trayer"] floating enable
 #for_window [class="Termite"] floating enable
 for_window [class="(?!)Shadowsocks-Qt5"] floating enable 800 x 600
 for_window [class="(?!)System-config-printer.py"] floating enable border normal
-for_window [class="(?!)xpad"] floating enable border pixel 0, move scratchpad
+for_window [class="xpad"] floating enable border pixel 0
 for_window [class="(?!)xfce4-appfinder"] floating enable border normal
 for_window [class="GParted"] floating enable border normal
 for_window [class="Calamares"] floating enable border normal
